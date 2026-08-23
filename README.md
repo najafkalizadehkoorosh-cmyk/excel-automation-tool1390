@@ -1,17 +1,19 @@
 # Excel Automation Tool
 
-A lightweight desktop tool for cleaning and processing Excel and CSV files.
+A lightweight desktop tool for cleaning and batch-processing Excel and CSV files.
 
-## Current features
+## Features
 
-- Choose `.csv`, `.xlsx`, or `.xlsm` files from a desktop UI.
+- Desktop GUI for Windows and other Python/Tkinter environments.
+- Process `.csv`, `.xlsx`, and `.xlsm` files.
 - Remove completely empty rows and columns.
 - Trim whitespace from text cells.
 - Remove duplicate rows by default.
 - Export cleaned data to Excel.
-- Show a processing summary.
+- Show a data-quality summary.
+- Batch-process an entire folder.
 - Command-line workflow for automation.
-- Automated tests and GitHub Actions CI.
+- Unit tests and GitHub Actions CI.
 
 ## Requirements
 
@@ -32,18 +34,34 @@ Run:
 python main.py
 ```
 
-Choose an Excel/CSV file, select whether duplicate rows should be removed, and click **Process file**. The cleaned file is written next to the input file.
+For one file, choose **Choose file**, select the cleaning options, and click **Process**.
+
+For many files, enable **Batch mode**, choose a folder, and click **Process**. Cleaned files are written into a `cleaned_output` folder inside the selected directory.
 
 ## Command-line usage
+
+Single file:
 
 ```bash
 python -m src.excel_automation.cli input.xlsx
 ```
 
-Choose an output file:
+Custom output:
 
 ```bash
 python -m src.excel_automation.cli input.xlsx --output output.xlsx
+```
+
+Batch folder:
+
+```bash
+python -m src.excel_automation.cli ./data --batch
+```
+
+Batch with a custom output directory:
+
+```bash
+python -m src.excel_automation.cli ./data --batch --output ./processed
 ```
 
 Keep duplicate rows:
@@ -62,12 +80,14 @@ python -m src.excel_automation.cli input.csv --keep-duplicates
 ├── src/
 │   └── excel_automation/
 │       ├── __init__.py
+│       ├── batch.py
 │       ├── cleaner.py
 │       ├── cli.py
 │       ├── gui.py
 │       ├── reader.py
 │       └── reporter.py
 ├── tests/
+│   ├── test_batch.py
 │   ├── test_cleaner.py
 │   ├── test_reader.py
 │   └── test_reporter.py
@@ -78,16 +98,16 @@ python -m src.excel_automation.cli input.csv --keep-duplicates
 
 ## Status
 
-Version 0.2.0 — desktop MVP.
+Version 0.3.0 — desktop MVP with batch automation.
 
 ## Roadmap
 
-- Configurable cleaning rules
-- Richer reports and data quality checks
-- Drag-and-drop support
-- Batch processing
-- Web version
-- User-focused workflow templates
+- Configurable cleaning rules and column-specific transformations.
+- Better data-quality and validation reports.
+- Drag-and-drop support.
+- Windows executable packaging.
+- Web version for broader distribution.
+- User-focused workflow templates and a paid professional tier.
 
 ## License
 
