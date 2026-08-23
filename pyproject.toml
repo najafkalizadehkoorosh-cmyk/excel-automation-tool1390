@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "excel-automation-tool"
-version = "0.1.0"
-description = "Automate Excel and CSV data cleaning, processing, and reporting."
+version = "0.3.0"
+description = "Desktop automation for cleaning and batch-processing Excel and CSV files."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -15,6 +15,7 @@ dependencies = [
 
 [project.scripts]
 excel-automation = "src.excel_automation.cli:main"
+excel-automation-gui = "src.excel_automation.gui:main"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
