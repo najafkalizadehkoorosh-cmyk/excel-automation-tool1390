@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from .batch import process_folder
 from .cleaner import clean_table
 from .reader import load_table
 from .reporter import save_table, summarize
@@ -11,24 +12,26 @@ from .reporter import save_table, summarize
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Clean Excel/CSV files and generate a data summary."
+        description="Clean Excel/CSV files and generate data summaries."
     )
-    parser.add_argument("input", help="Path to a .csv, .xlsx, or .xlsm file")
+    parser.add_argument("input", help="Path to a .csv, .xlsx, .xlsm file, or folder")
     parser.add_argument(
-        "-o",
-        "--output",
-        help="Output path (.csv or .xlsx). Defaults to cleaned_<input>.xlsx",
+        "-o", "--output",
+        help="Output file for single-file mode or output folder for batch mode",
     )
     parser.add_argument(
-        "--keep-duplicates",
-        action="store_true",
+        "--keep-duplicates", action="store_true",
         help="Keep duplicate rows instead of removing them.",
+    )
+    parser.add_argument(
+        "--batch", action="store_true",
+        help="Process every supported file in the input folder.",
     )
     return parser
 
 
 def run(input_path: str, output_path: str | None = None, keep_duplicates: bool = False) -> dict:
-    """Run the complete cleaning workflow and return its summary."""
+    """Run the complete single-file cleaning workflow."""
     source = Path(input_path)
     df = load_table(source)
     cleaned = clean_table(df, drop_duplicates=not keep_duplicates)
@@ -46,12 +49,20 @@ def main() -> int:
     args = build_parser().parse_args()
 
     try:
-        summary = run(args.input, args.output, args.keep_duplicates)
-    except (FileNotFoundError, ValueError, OSError) as exc:
+        if args.batch:
+            results = process_folder(
+                args.input,
+                args.output,
+                keep_duplicates=args.keep_duplicates,
+            )
+            print(json.dumps(results, indent=2, ensure_ascii=False))
+        else:
+            summary = run(args.input, args.output, args.keep_duplicates)
+            print(json.dumps(summary, indent=2, ensure_ascii=False))
+    except (FileNotFoundError, NotADirectoryError, ValueError, OSError) as exc:
         print(f"Error: {exc}")
         return 1
 
-    print(json.dumps(summary, indent=2, ensure_ascii=False))
     return 0
 
 
