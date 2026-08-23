@@ -1,7 +1,7 @@
-def main():
-    print("Excel Automation Tool")
-    print("Project started successfully!")
+"""Convenience entry point for the Excel Automation Tool."""
+
+from src.excel_automation.cli import main
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
