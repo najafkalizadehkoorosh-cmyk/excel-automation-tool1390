@@ -1,20 +1,22 @@
 # Excel Automation Tool
 
-Automate common Excel and CSV cleanup tasks from the command line.
+A lightweight desktop tool for cleaning and processing Excel and CSV files.
 
 ## Current features
 
-- Read `.csv`, `.xlsx`, and `.xlsm` files.
+- Choose `.csv`, `.xlsx`, or `.xlsm` files from a desktop UI.
 - Remove completely empty rows and columns.
 - Trim whitespace from text cells.
 - Remove duplicate rows by default.
-- Export cleaned data to CSV or Excel.
-- Print a JSON summary of the processed data.
+- Export cleaned data to Excel.
+- Show a processing summary.
+- Command-line workflow for automation.
 - Automated tests and GitHub Actions CI.
 
 ## Requirements
 
 - Python 3.10+
+- Tkinter (normally included with standard Python installations on Windows).
 
 Install dependencies:
 
@@ -22,9 +24,17 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-## Usage
+## Desktop usage
 
-Run the tool with a CSV or Excel file:
+Run:
+
+```bash
+python main.py
+```
+
+Choose an Excel/CSV file, select whether duplicate rows should be removed, and click **Process file**. The cleaned file is written next to the input file.
+
+## Command-line usage
 
 ```bash
 python -m src.excel_automation.cli input.xlsx
@@ -54,6 +64,7 @@ python -m src.excel_automation.cli input.csv --keep-duplicates
 │       ├── __init__.py
 │       ├── cleaner.py
 │       ├── cli.py
+│       ├── gui.py
 │       ├── reader.py
 │       └── reporter.py
 ├── tests/
@@ -67,9 +78,16 @@ python -m src.excel_automation.cli input.csv --keep-duplicates
 
 ## Status
 
-Version 0.1.0 — initial MVP.
+Version 0.2.0 — desktop MVP.
 
-The project is intentionally small at first. Future versions can add configurable cleaning rules, richer reports, a graphical/web interface, and workflow automation.
+## Roadmap
+
+- Configurable cleaning rules
+- Richer reports and data quality checks
+- Drag-and-drop support
+- Batch processing
+- Web version
+- User-focused workflow templates
 
 ## License
 
