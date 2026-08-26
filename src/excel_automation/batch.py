@@ -5,6 +5,7 @@ from pathlib import Path
 from .cleaner import clean_table
 from .reader import SUPPORTED_EXTENSIONS, load_table
 from .reporter import save_table, summarize
+from .transform import transform_table
 
 
 def process_folder(
@@ -12,12 +13,9 @@ def process_folder(
     output_dir: str | Path | None = None,
     *,
     keep_duplicates: bool = False,
+    apply_transform: bool = True,
 ) -> list[dict]:
-    """Process every supported data file in a folder.
-
-    Each result contains the source file, output file, and summary. A failed
-    file is recorded with an error instead of stopping the whole batch.
-    """
+    """Process every supported data file in a folder."""
     source_dir = Path(input_dir)
     if not source_dir.is_dir():
         raise NotADirectoryError(f"Input directory not found: {source_dir}")
@@ -33,14 +31,18 @@ def process_folder(
     results: list[dict] = []
     for source in files:
         try:
-            frame = clean_table(
-                load_table(source),
-                drop_duplicates=not keep_duplicates,
-            )
+            frame = clean_table(load_table(source), drop_duplicates=not keep_duplicates)
+            if apply_transform:
+                frame = transform_table(frame)
             output = destination / f"cleaned_{source.stem}.xlsx"
             save_table(frame, output)
             summary = summarize(frame)
-            summary.update({"input_file": str(source), "output_file": str(output), "status": "ok"})
+            summary.update({
+                "input_file": str(source),
+                "output_file": str(output),
+                "status": "ok",
+                "transformations_applied": apply_transform,
+            })
         except (OSError, ValueError, RuntimeError) as exc:
             summary = {
                 "input_file": str(source),
