@@ -8,11 +8,12 @@ from .batch import process_folder
 from .cleaner import clean_table
 from .reader import load_table
 from .reporter import save_table, summarize
+from .quality import profile_table
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Clean Excel/CSV files and generate data summaries."
+        description="Clean Excel/CSV files and generate data-quality reports."
     )
     parser.add_argument("input", help="Path to a .csv, .xlsx, .xlsm file, or folder")
     parser.add_argument(
@@ -31,9 +32,10 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def run(input_path: str, output_path: str | None = None, keep_duplicates: bool = False) -> dict:
-    """Run the complete single-file cleaning workflow."""
+    """Run the complete single-file cleaning and quality workflow."""
     source = Path(input_path)
     df = load_table(source)
+    quality_before = profile_table(df)
     cleaned = clean_table(df, drop_duplicates=not keep_duplicates)
 
     if output_path is None:
@@ -42,6 +44,8 @@ def run(input_path: str, output_path: str | None = None, keep_duplicates: bool =
     saved = save_table(cleaned, output_path)
     summary = summarize(cleaned)
     summary["output_file"] = str(saved)
+    summary["quality_before"] = quality_before
+    summary["quality_after"] = profile_table(cleaned)
     return summary
 
 
