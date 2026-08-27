@@ -1,0 +1,1 @@
+The project is being validated incrementally through GitHub Actions. The most recently confirmed Windows build succeeded with the executable smoke test. New commits after that confirmation trigger new validation runs and should not be treated as release-verified until their runs complete.
