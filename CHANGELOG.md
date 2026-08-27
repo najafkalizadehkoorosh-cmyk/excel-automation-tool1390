@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.1 - 2026-08-27
+
+- Fixed Customer Contacts preset deduplication after whitespace/email normalization.
+- Added a regression test covering duplicates that become identical after normalization.
+- Synced package version metadata to 0.5.1.
+
 ## 0.5.0 - 2026-08-27
 
 - Added ready-to-use workflow presets for general cleanup, customer contacts, and sales exports.
