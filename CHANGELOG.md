@@ -1,13 +1,19 @@
 # Changelog
 
-## Unreleased
+## 0.4.0 - 2026-08-27
 
-- Added multi-file merge workflow.
-- Added desktop workflow selector for clean, batch, and merge operations.
-- Added deterministic transformations for column names, text whitespace, and likely email fields.
-- Added data-quality diagnostics.
-- Added security, privacy, terms, and product landing-page drafts.
-- Added automated tagged Windows releases.
+- Polished the desktop workflow UI.
+- Fixed merge source-column option state handling.
+- Added before/after data-quality reports to batch processing.
+- Kept processing local to the user's machine; no file upload service is required.
+
+## 0.3.0
+
+- Added data-quality profiling.
+- Added smart transformations.
+- Added folder batch processing.
+- Added file merge workflow.
+- Added Windows executable build.
 
 ## 0.2.0
 
