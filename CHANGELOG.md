@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0 - 2026-08-27
+
+- Added ready-to-use workflow presets for general cleanup, customer contacts, and sales exports.
+- Added HTML/JSON data-quality report export.
+- Added preset selection and quality-report generation to the desktop workflow.
+- Expanded CLI options for presets and quality reports.
+- Added automated tests for presets and report export.
+- Improved release-readiness documentation.
+
 ## 0.4.0 - 2026-08-27
 
 - Polished the desktop workflow UI.
