@@ -20,18 +20,23 @@ class WorkflowPreset:
 
 
 def customer_contacts(df: pd.DataFrame) -> pd.DataFrame:
-    """Prepare common customer/contact exports without inventing values."""
-    result = clean_table(df, drop_duplicates=True)
-    return transform_table(result, column_names=True, text=True, emails=True)
+    """Prepare common customer/contact exports without inventing values.
+
+    Transform first so values that become identical after normalization are
+    correctly recognized as duplicates, then remove duplicate contact rows.
+    """
+    result = transform_table(df, column_names=True, text=True, emails=True)
+    return clean_table(result, drop_duplicates=True)
 
 
 def generic_cleanup(df: pd.DataFrame) -> pd.DataFrame:
     """Apply the default safe cleanup workflow."""
-    return transform_table(clean_table(df, drop_duplicates=True))
+    result = transform_table(df, column_names=True, text=True, emails=True)
+    return clean_table(result, drop_duplicates=True)
 
 
 def sales_export(df: pd.DataFrame) -> pd.DataFrame:
-    """Prepare a typical sales export while preserving business values."""
+    """Prepare a typical sales export while preserving duplicate transaction rows."""
     result = clean_table(df, drop_duplicates=False)
     return transform_table(result, column_names=True, text=True, emails=True)
 
