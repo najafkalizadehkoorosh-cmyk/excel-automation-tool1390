@@ -1,25 +1,63 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Excel Automation Tool — Clean, inspect and process data</title>
-  <meta name="description" content="A lightweight Windows tool for cleaning, transforming, profiling, batch-processing and merging Excel and CSV files locally.">
-  <style>body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;max-width:900px;margin:auto;padding:48px 20px;line-height:1.6;background:#f7f7f7;color:#202020}main{background:white;padding:40px;border-radius:18px}h1{font-size:42px;line-height:1.1}a{display:inline-block;padding:11px 16px;border-radius:10px;background:#202020;color:white;text-decoration:none}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.card{border:1px solid #ddd;padding:18px;border-radius:12px}.muted{color:#666}</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Excel Automation Tool — Clean and automate spreadsheet work</title>
+  <meta name="description" content="A local-first Windows tool for cleaning, inspecting, transforming, batch-processing and merging Excel and CSV files.">
+  <meta name="robots" content="index,follow">
+  <style>
+    :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#171717;background:#f4f5f7}
+    *{box-sizing:border-box}body{margin:0}main{max-width:980px;margin:auto;padding:28px 18px 60px}
+    .hero{background:#fff;border:1px solid #e2e4e8;border-radius:24px;padding:48px 34px;margin-bottom:18px}
+    .eyebrow{font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:13px;color:#5f6368}
+    h1{font-size:clamp(36px,7vw,64px);line-height:1.02;margin:12px 0 18px;max-width:760px}
+    h2{font-size:28px;margin-top:34px}.lead{font-size:20px;color:#4b4f56;max-width:760px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.button{padding:12px 17px;border-radius:11px;background:#171717;color:#fff;text-decoration:none;font-weight:700}.secondary{background:#fff;color:#171717;border:1px solid #d6d9de}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.card{background:#fff;border:1px solid #e2e4e8;border-radius:16px;padding:20px}.card strong{font-size:18px}.muted{color:#666}
+    .notice{padding:15px 18px;background:#fff;border-left:4px solid #777;border-radius:8px;margin-top:18px}
+    footer{margin-top:34px;font-size:14px}.links a{color:inherit;margin-right:14px}
+  </style>
 </head>
-<body><main>
-  <p class="muted">Excel Automation Tool</p>
-  <h1>Turn messy spreadsheets into usable data.</h1>
-  <p>Clean, inspect, transform, batch-process and merge Excel/CSV files from a simple Windows application. Core processing is designed to stay local on the user's machine.</p>
-  <p><a href="https://github.com/najafkalizadehkoorosh-cmyk/excel-automation-tool1390">View the project on GitHub</a></p>
-  <section class="grid">
-    <div class="card"><strong>Clean</strong><br>Remove empty rows/columns, trim text and duplicates.</div>
-    <div class="card"><strong>Inspect</strong><br>Find missing values, duplicates and likely invalid emails.</div>
-    <div class="card"><strong>Transform</strong><br>Normalize column names, text and email fields.</div>
-    <div class="card"><strong>Batch</strong><br>Process supported files in a folder automatically.</div>
-    <div class="card"><strong>Merge</strong><br>Combine multiple files into one structured output.</div>
-    <div class="card"><strong>Local-first</strong><br>No upload service is required for core processing.</div>
+<body>
+<main>
+  <section class="hero">
+    <div class="eyebrow">Excel Automation Tool</div>
+    <h1>Turn repetitive spreadsheet work into a simple workflow.</h1>
+    <p class="lead">Clean, inspect, transform, batch-process and merge Excel/CSV files from a lightweight Windows application. Core processing is local-first, so the basic workflow does not require uploading your spreadsheets.</p>
+    <div class="actions">
+      <a class="button" href="https://github.com/najafkalizadehkoorosh-cmyk/excel-automation-tool1390">View on GitHub</a>
+      <a class="button secondary" href="quickstart.md">Read the quick start</a>
+    </div>
+    <div class="notice"><strong>Pre-release:</strong> This is an MVP. Review important outputs before using them in production systems.</div>
   </section>
-  <h2>Designed for small teams</h2>
-  <p>Start with repeatable spreadsheet chores and reduce manual cleanup. Always review important outputs before using them in production systems.</p>
-  <p class="muted">Product information only; no guarantee of accuracy, savings, or revenue.</p>
-</main></body></html>
+
+  <h2>What it does</h2>
+  <section class="grid">
+    <div class="card"><strong>Clean</strong><br>Remove empty rows/columns, trim whitespace and remove duplicate rows.</div>
+    <div class="card"><strong>Inspect</strong><br>Profile missing values, duplicates, repeated values, empty text and likely invalid emails.</div>
+    <div class="card"><strong>Transform</strong><br>Normalize column names, text and likely email fields with deterministic rules.</div>
+    <div class="card"><strong>Batch</strong><br>Apply the same workflow to a folder of supported files with per-file error isolation.</div>
+    <div class="card"><strong>Merge</strong><br>Combine multiple supported files and optionally retain source-file information.</div>
+    <div class="card"><strong>Local-first</strong><br>Core desktop processing runs locally; no hosted upload service is required.</div>
+  </section>
+
+  <h2>Simple workflow</h2>
+  <section class="card">
+    <p><strong>1.</strong> Select a CSV/XLSX/XLSM file or folder.</p>
+    <p><strong>2.</strong> Choose Clean, Batch, or Merge.</p>
+    <p><strong>3.</strong> Run the deterministic workflow.</p>
+    <p><strong>4.</strong> Review the output and quality information.</p>
+  </section>
+
+  <h2>Built for repeatable spreadsheet chores</h2>
+  <p class="muted">The goal is not to replace every spreadsheet platform. It is to make common cleanup and file-processing jobs faster, repeatable, and easier to review.</p>
+
+  <footer class="links">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="https://github.com/najafkalizadehkoorosh-cmyk/excel-automation-tool1390">Source code</a>
+  </footer>
+</main>
+</body>
+</html>
