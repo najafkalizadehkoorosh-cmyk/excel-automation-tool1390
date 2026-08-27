@@ -24,6 +24,13 @@ jobs:
           pip install pyinstaller
       - name: Build executable
         run: pyinstaller --noconfirm --clean --onefile --windowed --name ExcelAutomationTool main.py
+      - name: Smoke test executable
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "dist/ExcelAutomationTool.exe")) { throw "Executable was not created." }
+          $size = (Get-Item "dist/ExcelAutomationTool.exe").Length
+          if ($size -lt 1000000) { throw "Executable is unexpectedly small ($size bytes)." }
+          Write-Host "Executable smoke check passed: $size bytes"
       - name: Upload executable
         uses: actions/upload-artifact@v4
         with:
