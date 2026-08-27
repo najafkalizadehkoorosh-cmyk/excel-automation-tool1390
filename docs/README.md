@@ -8,6 +8,7 @@
 
 ## Product and business
 
+- [Product Listing](PRODUCT_LISTING.md)
 - [Zero-Budget Commercialization](COMMERCIALIZATION.md)
 - [Sales Funnel](SALES_FUNNEL.md)
 - [Pricing Experiment](PRICING.md)
@@ -15,8 +16,10 @@
 - [Commercial Architecture](COMMERCIAL_ARCHITECTURE.md)
 - [Product Outreach Copy](SALES_MESSAGE.md)
 - [Zero-Cost Distribution](FREE_TOOLS.md)
+- [Seller Handoff](SELLER_HANDOFF.md)
 
 ## Release and privacy
 
+- [Zero-Cost Launch Checklist](LAUNCH_ZERO_COST.md)
 - [Release Checklist](RELEASE_CHECKLIST.md)
 - [Privacy Checklist](PRIVACY_CHECKLIST.md)
