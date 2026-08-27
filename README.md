@@ -53,6 +53,16 @@ For the Customer Contacts preset:
 python -m src.excel_automation.cli examples/customer_contacts_sample.csv --preset customer_contacts --quality-report customer_quality.html
 ```
 
+## Beta testing
+
+The public beta package includes:
+
+- [`BETA_RELEASE.md`](BETA_RELEASE.md) — 10-minute trial and safety guide.
+- [`FEEDBACK_TEMPLATE.md`](FEEDBACK_TEMPLATE.md) — structured feedback template.
+- [`BETA_OUTREACH.md`](BETA_OUTREACH.md) — responsible, zero-budget outreach guidance.
+
+Please use synthetic or non-sensitive sample data during public testing and review important outputs before business use.
+
 ## CLI
 
 Single file:
@@ -104,7 +114,7 @@ See [`docs/quickstart.md`](docs/quickstart.md).
 
 ## Commercialization
 
-The project includes a zero-budget commercialization plan in [`docs/COMMERCIALIZATION.md`](docs/COMMERCIALIZATION.md). The target of $50/month is an illustrative goal, not a revenue guarantee.
+The project includes a zero-budget commercialization plan in [`docs/SALES_PLAN.md`](docs/SALES_PLAN.md). The target of $50/month is an illustrative goal, not a revenue guarantee.
 
 The current repository uses the MIT License. Before selling a proprietary or exclusive build based on this repository, review the licensing and distribution model appropriately. The project does not contain a payment backend and does not activate paid services by default.
 
@@ -116,53 +126,31 @@ The current repository uses the MIT License. Before selling a proprietary or exc
 ├── requirements.txt
 ├── pyproject.toml
 ├── CHANGELOG.md
+├── BETA_RELEASE.md
+├── FEEDBACK_TEMPLATE.md
+├── BETA_OUTREACH.md
 ├── examples/
-│   ├── README.md
-│   └── customer_contacts_sample.csv
 ├── docs/
-│   ├── index.html
-│   ├── quickstart.md
-│   ├── privacy.html
-│   ├── terms.html
-│   ├── COMMERCIALIZATION.md
-│   ├── PRIVACY_CHECKLIST.md
-│   └── RELEASE_CHECKLIST.md
 ├── src/
-│   └── excel_automation/
-│       ├── __init__.py
-│       ├── batch.py
-│       ├── cleaner.py
-│       ├── cli.py
-│       ├── gui.py
-│       ├── merge.py
-│       ├── presets.py
-│       ├── quality.py
-│       ├── quality_report.py
-│       ├── reader.py
-│       ├── reporter.py
-│       └── transform.py
 ├── tests/
 └── .github/workflows/
-    ├── ci.yml
-    ├── windows-build.yml
-    └── release.yml
 ```
 
 ## Release
 
-Windows builds are produced by GitHub Actions. Version tags such as `v0.5.0` can trigger the release workflow and attach the standalone Windows executable to a GitHub Release.
+Windows builds are produced by GitHub Actions. Version tags such as `v0.5.1` can trigger the release workflow and attach the standalone Windows executable to a GitHub Release.
 
 No paid infrastructure is required for the current desktop MVP.
 
 ## Status
 
-**Pre-release MVP — 0.5.0.** The core desktop workflows are implemented and tested in CI; commercial distribution still requires final real-world validation, legal review for the intended market, and a lawful payment/distribution setup.
+**Release Candidate — 0.5.1.** The core desktop workflows are implemented and tested in CI. Public beta testing and commercial validation are the next steps; revenue is not guaranteed.
 
 ## Roadmap
 
 1. More customer-specific presets and configurable rules.
-2. Background processing and better progress reporting.
-3. Optional web product only if usage data justifies hosted infrastructure.
+2. Better progress reporting for large folders.
+3. Optional hosted product only if validated demand justifies infrastructure.
 4. Automated support, analytics, billing, backups, and monitoring for a future hosted version.
 
 ## License
