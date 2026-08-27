@@ -43,10 +43,14 @@ Choose one workflow:
 - `customer_contacts` — customer/contact export cleanup, including likely email fields.
 - `sales_export` — sales export cleanup while preserving duplicate transaction rows.
 
-CLI example:
+## Example
+
+The repository includes synthetic test data in [`examples/customer_contacts_sample.csv`](examples/customer_contacts_sample.csv). It contains no real customer information.
+
+For the Customer Contacts preset:
 
 ```bash
-python -m src.excel_automation.cli customers.xlsx --preset customer_contacts --quality-report customers_quality.html
+python -m src.excel_automation.cli examples/customer_contacts_sample.csv --preset customer_contacts --quality-report customer_quality.html
 ```
 
 ## CLI
@@ -98,6 +102,12 @@ python -m src.excel_automation.cli input.xlsx --quality-report quality.json
 
 See [`docs/quickstart.md`](docs/quickstart.md).
 
+## Commercialization
+
+The project includes a zero-budget commercialization plan in [`docs/COMMERCIALIZATION.md`](docs/COMMERCIALIZATION.md). The target of $50/month is an illustrative goal, not a revenue guarantee.
+
+The current repository uses the MIT License. Before selling a proprietary or exclusive build based on this repository, review the licensing and distribution model appropriately. The project does not contain a payment backend and does not activate paid services by default.
+
 ## Project structure
 
 ```text
@@ -106,11 +116,15 @@ See [`docs/quickstart.md`](docs/quickstart.md).
 ├── requirements.txt
 ├── pyproject.toml
 ├── CHANGELOG.md
+├── examples/
+│   ├── README.md
+│   └── customer_contacts_sample.csv
 ├── docs/
 │   ├── index.html
 │   ├── quickstart.md
 │   ├── privacy.html
 │   ├── terms.html
+│   ├── COMMERCIALIZATION.md
 │   ├── PRIVACY_CHECKLIST.md
 │   └── RELEASE_CHECKLIST.md
 ├── src/
