@@ -3,11 +3,12 @@
 ## 0.5.0 - 2026-08-27
 
 - Added ready-to-use workflow presets for general cleanup, customer contacts, and sales exports.
-- Added HTML/JSON data-quality report export.
-- Added preset selection and quality-report generation to the desktop workflow.
-- Expanded CLI options for presets and quality reports.
-- Added automated tests for presets and report export.
-- Improved release-readiness documentation.
+- Added exportable data-quality reports in HTML and JSON formats.
+- Added preset selection and quality-report output to the desktop/CLI single-file workflow.
+- Added a synthetic customer-contact example for safe product demos and testing.
+- Added zero-budget commercialization guidance and responsible outreach copy.
+- Added release and privacy readiness documentation.
+- Added a Windows executable smoke test to the build workflow.
 
 ## 0.4.0 - 2026-08-27
 
@@ -15,7 +16,6 @@
 - Fixed merge source-column option state handling.
 - Added before/after data-quality reports to batch processing.
 - Added a clearer product landing page and quick-start documentation.
-- Added pre-release privacy and release-readiness checklists.
 - Kept core processing local to the user's machine; no file upload service is required.
 
 ## 0.3.0
