@@ -10,6 +10,7 @@ from tkinter import filedialog, messagebox, ttk
 from .batch import process_folder
 from .cli import run
 from .merge import merge_files
+from .presets import PRESETS
 
 
 class ExcelAutomationApp(tk.Tk):
@@ -18,24 +19,37 @@ class ExcelAutomationApp(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
         self.title("Excel Automation Tool")
-        self.geometry("900x700")
+        self.geometry("920x720")
         self.minsize(760, 620)
         self.input_path: Path | None = None
         self.mode = tk.StringVar(value="single")
         self.remove_duplicates = tk.BooleanVar(value=True)
         self.include_source = tk.BooleanVar(value=True)
+        self.preset = tk.StringVar(value="General Cleanup")
         self._build_ui()
 
     def _build_ui(self) -> None:
         container = ttk.Frame(self, padding=28)
         container.pack(fill="both", expand=True)
         ttk.Label(container, text="Excel Automation Tool", font=("TkDefaultFont", 20, "bold")).pack(anchor="center")
-        ttk.Label(container, text="Clean, inspect, transform, batch-process, or merge Excel/CSV data.").pack(anchor="center", pady=(4, 20))
+        ttk.Label(container, text="Choose a workflow, select your file or folder, and run.").pack(anchor="center", pady=(4, 20))
 
-        workflow = ttk.LabelFrame(container, text="1. Choose a workflow", padding=12)
+        workflow = ttk.LabelFrame(container, text="1. Workflow", padding=12)
         workflow.pack(fill="x")
         for value, label in (("single", "Clean one file"), ("batch", "Process a folder"), ("merge", "Merge a folder")):
             ttk.Radiobutton(workflow, text=label, value=value, variable=self.mode, command=self._update_mode).pack(side="left", padx=(0, 18))
+
+        preset_frame = ttk.Frame(container)
+        preset_frame.pack(fill="x", pady=(10, 0))
+        ttk.Label(preset_frame, text="Preset (single-file mode):").pack(side="left")
+        self.preset_box = ttk.Combobox(
+            preset_frame,
+            textvariable=self.preset,
+            state="readonly",
+            values=[p.name for p in PRESETS.values()],
+            width=34,
+        )
+        self.preset_box.pack(side="left", padx=10)
 
         source = ttk.LabelFrame(container, text="2. Input", padding=12)
         source.pack(fill="x", pady=14)
@@ -60,12 +74,19 @@ class ExcelAutomationApp(tk.Tk):
         self.result.pack(fill="both", expand=True, pady=(16, 0))
         self._update_mode()
 
+    def _selected_preset_key(self) -> str:
+        for key, preset in PRESETS.items():
+            if preset.name == self.preset.get():
+                return key
+        return "general_cleanup"
+
     def _update_mode(self) -> None:
         is_single = self.mode.get() == "single"
         is_merge = self.mode.get() == "merge"
         self.choose_button.config(text="Choose file" if is_single else "Choose folder")
         self.duplicates_check.config(state="normal" if not is_merge else "disabled")
         self.source_check.config(state="normal" if is_merge else "disabled")
+        self.preset_box.config(state="readonly" if is_single else "disabled")
         self.input_path = None
         self.file_label.config(text="No file or folder selected")
 
@@ -101,7 +122,12 @@ class ExcelAutomationApp(tk.Tk):
         try:
             mode = self.mode.get()
             if mode == "single":
-                summary = run(str(self.input_path), keep_duplicates=not self.remove_duplicates.get())
+                summary = run(
+                    str(self.input_path),
+                    keep_duplicates=not self.remove_duplicates.get(),
+                    preset=self._selected_preset_key(),
+                    quality_report=str(self.input_path.with_name(f"{self.input_path.stem}_quality.html")),
+                )
                 report = json.dumps(summary, indent=2, ensure_ascii=False)
             elif mode == "batch":
                 results = process_folder(self.input_path, keep_duplicates=not self.remove_duplicates.get())
@@ -122,3 +148,7 @@ class ExcelAutomationApp(tk.Tk):
 
 def main() -> None:
     ExcelAutomationApp().mainloop()
+
+
+if __name__ == "__main__":
+    main()
