@@ -5,7 +5,9 @@
 - Polished the desktop workflow UI.
 - Fixed merge source-column option state handling.
 - Added before/after data-quality reports to batch processing.
-- Kept processing local to the user's machine; no file upload service is required.
+- Added a clearer product landing page and quick-start documentation.
+- Added pre-release privacy and release-readiness checklists.
+- Kept core processing local to the user's machine; no file upload service is required.
 
 ## 0.3.0
 
